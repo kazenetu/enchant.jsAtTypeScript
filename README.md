@@ -1,0 +1,2 @@
+# enchant.jsAtTypeScript
+TypeScriptでenchant.jsを簡易的に使えるようにするライブラリ
