@@ -59,7 +59,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="TypeScripts\Base\GameMain.ts" />
     <TypeScriptCompile Include="TypeScripts\Base\ResourceManager.ts" />
-    <TypeScriptCompile Include="TypeScripts\DefinitelyTyped\enchantjs.d.ts" />
     <TypeScriptCompile Include="TypeScripts\Interfaces\IPaintable.ts" />
     <TypeScriptCompile Include="TypeScripts\Interfaces\IRunnable.ts" />
     <TypeScriptCompile Include="TypeScripts\UIParts\Character.ts" />
@@ -74,6 +73,7 @@
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(ProjectDir)base.js" "$(ProjectDir)..\build"
-copy /y "$(ProjectDir)base.d.ts" "$(ProjectDir)..\build"</PostBuildEvent>
+
+copy /y "$(ProjectDir)base.d.ts" "$(ProjectDir)..\definitelytyped"</PostBuildEvent>
   </PropertyGroup>
 </Project>

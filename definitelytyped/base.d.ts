@@ -1,3 +1,4 @@
+/// <reference path="../definitelytyped/enchantjs.d.ts" />
 declare module Rf.Base {
     class Resource {
         Keyword: string;

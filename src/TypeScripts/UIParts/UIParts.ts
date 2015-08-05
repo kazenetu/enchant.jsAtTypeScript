@@ -1,8 +1,9 @@
 ﻿/// <reference path="../Interfaces/IPaintable.ts"/>
+/// <reference path="../../../definitelytyped/enchantjs.d.ts"/>
 
 module Rf.UIParts {
 
-    /** 
+    /**
      * enchantjs用UIパーツのスーパークラス
     */
     export class UIPartBase implements Rf.Interfaces.IPaintable {
@@ -34,7 +35,7 @@ module Rf.UIParts {
             this.Ui = null;
         }
 
-        /** 
+        /**
          * プロパティをjsオブジェクトに反映
         */
         public Refresh(): void {
@@ -58,7 +59,7 @@ module Rf.UIParts {
         }
     }
 
-    /** 
+    /**
      * グループUI
     */
     export class Group extends Rf.UIParts.UIPartBase {
@@ -70,7 +71,7 @@ module Rf.UIParts {
         }
     }
 
-    /** 
+    /**
      * ラベルUI
     */
     export class Label extends Rf.UIParts.UIPartBase {
@@ -105,11 +106,11 @@ module Rf.UIParts {
             if (this.TextAlign !== "") {
                 this.Ui.textAlign = this.TextAlign;
             }
-            
+
         }
     }
 
-    /** 
+    /**
      * スプライトUI
     */
     export class Sprite extends Rf.UIParts.UIPartBase {
@@ -131,12 +132,12 @@ module Rf.UIParts {
         }
     }
 
-    /** 
+    /**
       * イメージ無しスプライトUI
     **/
     export class NoImageSprite extends Rf.UIParts.UIPartBase {
 
-    /** 
+    /**
      * イメージ無しスプライトUI
     */
         public constructor(width: number, height: number, stage: any) {
@@ -156,7 +157,7 @@ module Rf.UIParts {
         }
     }
 
-    /** 
+    /**
      * マップUI
     */
     export class Map extends Rf.UIParts.UIPartBase {
@@ -183,5 +184,5 @@ module Rf.UIParts {
             this.Ui.loadData(mapData0, mapData1);
         }
     }
-    
-}   
+
+}
