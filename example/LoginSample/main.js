@@ -2,7 +2,13 @@
 /// <reference path="../../definitelytyped/enchantjs.d.ts" />
 var Rf;
 (function (Rf) {
+    /**
+     * タップ時に表示する演出用クラス
+    */
     var Particle = (function () {
+        /**
+         * コンストラクタ
+        */
         function Particle(stage) {
             this.isShowtParticle = false;
             this.particles = new Array();
@@ -56,7 +62,13 @@ var Rf;
         return Particle;
     })();
     Rf.Particle = Particle;
+    /**
+     * メインクラス
+    */
     var Main = (function () {
+        /**
+         * コンストラクタ
+        */
         function Main() {
             this.stage = null;
             this.selectCharacterBase = null;
@@ -67,19 +79,28 @@ var Rf;
             this.screenWidth = 320;
             this.screenHeight = 240;
             this.gameMain = new Rf.Base.GameMain();
+            //画像のロード予約（ロードされたものはInitメソッドで取得可能）
             this.gameMain.SetResourcePath("resources/");
             this.gameMain.AddGetResourceName("charaImage", "chara.png");
             this.gameMain.AddGetResourceName("titleImage", "title.png");
             this.gameMain.AddGetResourceName("loginImage", "login.png");
         }
+        /**
+         * 初期化
+         * @param {any} stage - ステージインスタンス(JSから取得)
+        */
         Main.prototype.Init = function (stage) {
             Rf.UIParts.UIPartBase.assets = RfView.GetAssets();
             this.stage = stage;
             var instance = this;
+            // ログイン画面作成
             instance.createStage();
         };
         Main.prototype.Dispose = function () {
         };
+        /**
+         * ログイン画面作成
+        */
         Main.prototype.createStage = function () {
             var _this = this;
             this.group = new Rf.UIParts.Group(this.stage);
@@ -91,6 +112,7 @@ var Rf;
             this.selectCharacterBase = new Rf.UIParts.Group(this.group.Ui);
             this.selectCharacterBase.Y = (480 / 2) - 16;
             this.selectCharacterBase.Refresh();
+            //キャラクタインスタンス作成とグループへの追加
             this.charaIndex = 0;
             if (sessionStorage.getItem("charaIndex") != null) {
                 this.charaIndex = parseInt(sessionStorage.getItem("charaIndex"), 10);
@@ -167,10 +189,19 @@ var Rf;
                 _this.messageLabel.Refresh();
             });
         };
+        /**
+         * ログイン処理
+        */
         Main.prototype.login = function (instance, playerIndex, label) {
+            //サーバとの通信処理などを行う
+            //選択されたキャラクタをsessionStorageに格納
+            sessionStorage.setItem("charaIndex", playerIndex.toString());
         };
+        /**
+         * 処理実行
+        */
         Main.prototype.Run = function () {
-            //メッセージ表示
+            //ログインボタンクリック時のメッセージ表示
             if (this.isShowMessage) {
                 if (this.messagePer < 1.0) {
                     this.messagePer += 0.125;
@@ -189,6 +220,9 @@ var Rf;
             //パーティクル表示
             this.particle.Run();
         };
+        /**
+         * キャラクタ選択時の表示切替処理
+        */
         Main.prototype.displayCharacters = function () {
             this.selectCharacterBase.Refresh();
             for (var index = 0; index < 13; index++) {

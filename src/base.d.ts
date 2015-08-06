@@ -1,4 +1,3 @@
-/// <reference path="../definitelytyped/enchantjs.d.ts" />
 declare module Rf.Base {
     class Resource {
         Keyword: string;
@@ -14,6 +13,7 @@ declare module Rf.Base {
         GetResourceName(keyword: string): string;
     }
 }
+
 declare module Rf.Interfaces {
     /**
      * 描画可能インターフェース
@@ -25,6 +25,9 @@ declare module Rf.Interfaces {
         Refresh(): void;
     }
 }
+
+/// <reference path="../Interfaces/IPaintable.d.ts" />
+/// <reference path="../../../definitelytyped/enchantjs.d.ts" />
 declare module Rf.UIParts {
     /**
      * enchantjs用UIパーツのスーパークラス
@@ -96,6 +99,8 @@ declare module Rf.UIParts {
         LoadDatas(mapData0: any, mapData1: any): void;
     }
 }
+
+/// <reference path="UIParts.d.ts" />
 declare module Rf.UIParts {
     /**
      * キャラクタ
@@ -123,6 +128,9 @@ declare module Rf.UIParts {
         SetAnime(): void;
     }
 }
+
+/// <reference path="ResourceManager.d.ts" />
+/// <reference path="../UIParts/Character.d.ts" />
 declare module Rf.Base {
     class GameMain {
         resourceManager: ResourceManager;
@@ -133,6 +141,7 @@ declare module Rf.Base {
         GetResourceName(keyword: string): string;
     }
 }
+
 declare module Rf.Interfaces {
     /**
      * 実行可能インターフェース
