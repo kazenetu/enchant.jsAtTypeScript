@@ -1,11 +1,11 @@
 {
-	"name": "typeScriptSample",
+	"name": "enchant.jsAtTypeScript",
 	"version": "1.0.0",
-	"description": "typeScriptSample",
+	"description": "enchant.jsAtTypeScript",
 	"author": "kazenetu",
-	"url": "",
+	"url": "https://github.com/kazenetu/enchant.jsAtTypeScript",
 	"license": "MIT License",
-	"keywords": "gulp",
+	"keywords": "enchant.js TypeScript",
 	"devDependencies":{
 		"gulp": "*",
 		"gulp-typescript": "*",
