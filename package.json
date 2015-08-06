@@ -9,6 +9,8 @@
 	"devDependencies":{
 		"gulp": "*",
 		"gulp-typescript": "*",
-		"gulp-concat": "*"
+		"gulp-concat": "*",
+		"run-sequence": "*",
+		"merge2": "*"
 	}
 }
