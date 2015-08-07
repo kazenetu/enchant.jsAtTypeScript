@@ -51,28 +51,33 @@ var examplePaths = ['example/LoginSample/**/*.ts','example/Basic/**/*.ts'];
 gulp.task('buildExamples',function(){
   var tasks = new Array();
 
+  //ビルドタスクの依存情報
+  var beforeFuncName = new Array();
+
   //ビルドタスク作成
   for(var index=0;index<examplePaths.length;index++){
     var examplePath = examplePaths[index];
     var funcName = examplePath.replace("/**/*.ts","").replace("/","_");
 
-    //タスク名を追加
-    tasks.push("'" + funcName + "'");
-
     //実装例フォルダごとのビルドタスクを宣言
-    (function(name,path){
-      gulp.task(name,function(){
+    (function(name,path,beforeTask){
+      gulp.task(name,beforeTask,function(){
           var result = gulp.src(path,{base:'example'})
         		.pipe(typescript(buildExamplesProject));
 
           //JavaScript
       		return result.pipe(gulp.dest('example'))
       });
-    })(funcName,examplePath);
+    })(funcName,examplePath,beforeFuncName);
 
-    //クラス定義が重複するため直列で実行
-    eval("runsequence(" + tasks.join() + ");");
+    beforeFuncName = new Array(funcName);
+
+    //タスク名を追加
+    tasks.push(funcName);
   }
+
+  //ビルドタスク実行
+  runsequence(tasks);
 });
 
 //スーパークラスと実装例のビルド
