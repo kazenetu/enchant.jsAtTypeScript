@@ -155,12 +155,14 @@ var Rf;
             function Sprite(width, height, stage) {
                 _super.call(this);
                 this.FileName = "";
+                this.Frame = 0;
                 var rfView = RfView.Create("new Sprite(" + width + "," + height + ")", stage);
                 this.Ui = rfView.ui;
             }
             Sprite.prototype.OnRefresh = function () {
                 if (this.FileName !== "") {
                     this.Ui.image = UIPartBase.assets[this.FileName];
+                    this.Ui.frame = this.Frame;
                 }
             };
             return Sprite;

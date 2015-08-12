@@ -75,6 +75,7 @@ declare module Rf.UIParts {
     */
     class Sprite extends Rf.UIParts.UIPartBase {
         FileName: string;
+        Frame: number;
         constructor(width: number, height: number, stage: any);
         protected OnRefresh(): void;
     }

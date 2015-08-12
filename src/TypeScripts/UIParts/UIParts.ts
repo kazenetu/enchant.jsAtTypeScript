@@ -115,11 +115,13 @@ module Rf.UIParts {
     */
     export class Sprite extends Rf.UIParts.UIPartBase {
         public FileName: string;
+        public Frame: number;
 
         public constructor(width: number, height: number,stage: any) {
             super();
 
             this.FileName = "";
+            this.Frame = 0;
 
             var rfView = RfView.Create("new Sprite(" + width + "," + height+ ")", stage);
             this.Ui = rfView.ui;
@@ -128,6 +130,7 @@ module Rf.UIParts {
         protected OnRefresh(): void {
             if (this.FileName !== "") {
                 this.Ui.image = UIPartBase.assets[this.FileName];
+                this.Ui.frame = this.Frame;
             }
         }
     }
