@@ -49,7 +49,7 @@ public Run(): void {
 |:---------|:---------|:---------|
 |Group  |X(number)<br>Y(number) <br>OriginX(number)<br>OriginY(number)<br>Rotation(number)<br>ScaleX(number)<br>ScaleY(number)<br>Opacity(number)<br>TouchEnabled(boolean)<br>Visible(boolean)<br>||
 |Label  |X(number)<br>Y(number)<br>OriginX(number)<br>OriginY(number)<br>Rotation(number)<br>ScaleX(number)<br>ScaleY(number)<br>Opacity(number)<br>TouchEnabled(boolean)<br>Visible(boolean)<br>Text(string)<br>Width(number)<br>Height(number)<br>Color(string)<br>TextAlign(string)||
-|Sprite  |X(number)<br>Y(number)<br>OriginX(number)<br>OriginY(number)<br>Rotation(number)<br>ScaleX(number)<br>ScaleY(number)<br>Opacity(number)<br>TouchEnabled(boolean)<br>Visible(boolean)<br>FileName(string)||
+|Sprite  |X(number)<br>Y(number)<br>OriginX(number)<br>OriginY(number)<br>Rotation(number)<br>ScaleX(number)<br>ScaleY(number)<br>Opacity(number)<br>TouchEnabled(boolean)<br>Visible(boolean)<br>FileName(string)<br>Frame(number)||
 |Surface  |X(number)<br>Y(number)<br>OriginX(number)<br>OriginY(number)<br>Rotation(number)<br>ScaleX(number)<br>ScaleY(number)<br>Opacity(number)<br>TouchEnabled(boolean)<br>Visible(boolean)<br>|SetSurface(fillStyle: string):void|
 
 ## License
