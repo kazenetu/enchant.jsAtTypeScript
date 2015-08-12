@@ -45,7 +45,7 @@ var buildExamplesProject = typescript.createProject({
   sortOutput: true
 });
 
-var examplePaths = ['example/LoginSample/**/*.ts','example/Basic/**/*.ts'];
+var examplePaths = ['example/LoginSample/**/*.ts','example/Basic/**/*.ts','example/ImageSpriteSample/**/*.ts'];
 
 //実装例のビルド
 gulp.task('buildExamples',function(){

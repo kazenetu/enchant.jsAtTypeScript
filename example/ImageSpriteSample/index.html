@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>イメージスプライトサンプル</title>
+
+    <script type="text/javascript" src="../../build/libs/enchant.js"></script>
+    <script type="text/javascript" src="../../build/libs/view.js"></script>
+    <script type="text/javascript" src="../../build/base.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+    <script>
+        enchant();
+
+        function gameLoad(screenWidth, screenHeight) {
+
+            var mainInstance = new Rf.Main();
+
+            //Start
+            var game = new Game(screenWidth, screenHeight);
+            game.fps = 10;
+            //Basicサンプルに追加 イメージファイルの事前ロード
+            game.preload(mainInstance.gameMain.GetResourceNames());
+
+            //ロード完了イベント
+            game.onload = function () {
+                if (isNaN(game._pageX)) {
+                    game._pageX = 0;
+                    game._pageY = 0;
+                }
+
+                var mainPanel = new Group();
+                game.currentScene._element.style.overflow = 'visible';
+                game.currentScene.addChild(mainPanel);
+
+                //CreateStage
+                var stage = new Group();
+                mainPanel.addChild(stage);
+
+                mainInstance.Init(mainPanel);
+
+                game.on(enchant.Event.ENTER_FRAME, function () {
+                    mainInstance.Run();
+                });
+            };
+            game.start();
+        }
+
+        //ゲームスタート
+        window.onload = function () {
+            //ゲームスタート
+            gameLoad(320, 480);
+        };
+    </script>
+
+</head>
+<body>
+    <div id="base" style="overflow:hidden;position:relative;">
+        <div id="enchant-stage">
+        </div>
+    </div>
+</body>
+</html>
