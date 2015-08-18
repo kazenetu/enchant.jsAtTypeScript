@@ -41,7 +41,7 @@
                 var stage = new Group();
                 mainPanel.addChild(stage);
 
-                mainInstance.Init(mainPanel);
+                mainInstance.Init(stage);
 
                 game.on(enchant.Event.ENTER_FRAME, function () {
                     mainInstance.Run();
