@@ -25,7 +25,7 @@ function gameLoad(screenWidth, screenHeight) {
         var stage = new Group();
         mainPanel.addChild(stage);
 
-        mainInstance.Init(mainPanel);
+        mainInstance.Init(stage);
 
         game.on(enchant.Event.ENTER_FRAME, function () {
             mainInstance.Run();
@@ -129,4 +129,3 @@ function resetScreen(gameWidth, gameHeight) {
     //enchant.Coreへの反映情報として連想配列を返す
     return { "scale": scale, "left": left, "top": top };
 }
-
