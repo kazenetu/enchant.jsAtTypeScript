@@ -11,6 +11,7 @@ npm installした上で、下記を実行してください。
    * ```gulp buildBases``` ライブラリをビルドします。
    * ```gulp buildExamples``` 実装例をビルドします。
    * ```gulp``` ライブラリと実装例をビルドします。
+   * ```gulp jsdoc``` ライブラリのAPIドキュメントを/docに作成します。
 
 ## 実装方法
 実装の全体は[example/Basicのmain.ts](./example/Basic/main.ts)をご覧ください。  
