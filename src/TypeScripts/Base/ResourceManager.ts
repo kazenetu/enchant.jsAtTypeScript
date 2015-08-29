@@ -1,34 +1,65 @@
 ﻿module Rf.Base {
-    /* 
+    /**
      * リソース情報
-    */
+     * @classdesc リソース情報クラス
+     * @constructor
+     * @memberof Base
+     */
     export class Resource {
         public Keyword: string;
         public FileName: string;
 
+        /**
+         * コンストラクタ
+         * @method
+         * @name Base.Resource#Resource
+         * @param {string} keyword - リソースのキー
+         * @param {string} fileName - リソース名
+         */
         public constructor(keyword: string, fileName: string) {
             this.Keyword = keyword;
             this.FileName = fileName;
         }
     }
 
-    /* 
-     * リソース管理クラス
-    */
+    /**
+     * リソース管理
+     * @classdesc リソース管理クラス
+     * @constructor
+     * @memberof Base
+     */
     export class ResourceManager {
         resources: Array<Resource>;
 
         public ResourcePath: string;
 
+        /**
+         * コンストラクタ
+         * @method
+         * @name Base.ResourceManager#ResourceManager
+         */
         public constructor() {
             this.ResourcePath = "";
             this.resources = new Array<Resource>();
         }
 
+        /**
+        * リソース名を追加
+        * @method
+        * @name Base.ResourceManager#AddGetResourceName
+        * @param {string} keyword - リソースのキー
+        * @param {string} fileName - リソース名
+         */
         public AddGetResourceName(keyword: string, fileName: string): void {
             this.resources.push(new Resource(keyword, this.ResourcePath + fileName));
         }
 
+        /**
+        * リソースの配列を取得
+        * @method
+        * @name Base.ResourceManager#GetResourceNames
+        * @return {string} リソースの配列を返す
+         */
         public GetResourceNames(): Array<string> {
             var result: Array<string> = new Array<string>();
 
@@ -39,6 +70,13 @@
             return result;
         }
 
+        /**
+         * リソース名を取得
+         * @method
+         * @name Base.ResourceManager#GetResourceName
+         * @param {string} keyword - リソースのキー
+         * @return {string} リソース名を返す
+         */
         public GetResourceName(keyword: string): string {
             var result: string = "";
 
@@ -54,4 +92,4 @@
 
     }
 
-} 
+}
