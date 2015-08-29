@@ -1,11 +1,18 @@
 ﻿/// <reference path="../Interfaces/IPaintable.ts"/>
 /// <reference path="../../../definitelytyped/enchantjs.d.ts"/>
 
+/**
+ * UIパーツ
+ * @namespace UIParts
+ */
 module Rf.UIParts {
 
     /**
      * enchantjs用UIパーツのスーパークラス
-    */
+     * @classdesc enchantjs用UIパーツのスーパークラス
+     * @constructor
+     * @memberof UIParts
+     */
     export class UIPartBase implements Rf.Interfaces.IPaintable {
         public static assets: any;
 
@@ -21,6 +28,11 @@ module Rf.UIParts {
         public Visible: boolean;
         public Ui: any;
 
+        /**
+         * コンストラクタ
+         * @method
+         * @name UIParts.UIPartBase#UIPartBase
+         */
         public constructor() {
             this.X = 0;
             this.Y = 0;
@@ -37,7 +49,9 @@ module Rf.UIParts {
 
         /**
          * プロパティをjsオブジェクトに反映
-        */
+         * @method
+         * @name UIParts.UIPartBase#Refresh
+         */
         public Refresh(): void {
             if (this.Ui !== null) {
                 this.Ui.x = this.X;
@@ -55,14 +69,30 @@ module Rf.UIParts {
             }
         }
 
+        /**
+         * 更新イベントハンドラ
+         * @method
+         * @name UIParts.UIPartBase#OnRefresh
+         */
         protected OnRefresh(): void {
         }
     }
 
     /**
      * グループUI
-    */
+     * @classdesc グループUIクラス
+     * @constructor
+     * @memberof UIParts
+     * @extends UIParts.UIPartBase
+     */
     export class Group extends Rf.UIParts.UIPartBase {
+
+        /**
+         * コンストラクタ
+         * @method
+         * @name UIParts.Group#Group
+         * @param {Object} stage - 親Node(enchantjsインスタンス)
+         */
         public constructor(stage: any) {
             super();
 
@@ -73,7 +103,11 @@ module Rf.UIParts {
 
     /**
      * ラベルUI
-    */
+     * @classdesc ラベルUIクラス
+     * @constructor
+     * @memberof UIParts
+     * @extends UIParts.UIPartBase
+     */
     export class Label extends Rf.UIParts.UIPartBase {
         public Text: string;
         public Width: number = 0;
@@ -81,6 +115,12 @@ module Rf.UIParts {
         public Color: string;
         public TextAlign: string;
 
+        /**
+         * コンストラクタ
+         * @method
+         * @name UIParts.Label#Label
+         * @param {Object} stage - 親Node(enchantjsインスタンス)
+         */
         public constructor(stage: any) {
             super();
 
@@ -92,6 +132,11 @@ module Rf.UIParts {
             this.Ui = rfView.ui;
         }
 
+        /**
+         * 更新イベントハンドラ
+         * @method
+         * @name UIParts.Label#OnRefresh
+         */
         protected OnRefresh(): void {
             this.Ui.text = this.Text;
             if (this.Width > 0.0) {
@@ -112,11 +157,23 @@ module Rf.UIParts {
 
     /**
      * スプライトUI
-    */
+     * @classdesc スプライトUIクラス
+     * @constructor
+     * @memberof UIParts
+     * @extends UIParts.UIPartBase
+     */
     export class Sprite extends Rf.UIParts.UIPartBase {
         public FileName: string;
         public Frame: number;
 
+        /**
+         * コンストラクタ
+         * @method
+         * @name UIParts.Sprite#Sprite
+         * @param {number} width - 表示サイズ.幅
+         * @param {number} height - 表示サイズ.高さ
+         * @param {Object} stage - 親Node(enchantjsインスタンス)
+         */
         public constructor(width: number, height: number,stage: any) {
             super();
 
@@ -127,6 +184,11 @@ module Rf.UIParts {
             this.Ui = rfView.ui;
         }
 
+        /**
+         * 更新イベントハンドラ
+         * @method
+         * @name UIParts.Sprite#OnRefresh
+         */
         protected OnRefresh(): void {
             if (this.FileName !== "") {
                 this.Ui.image = UIPartBase.assets[this.FileName];
@@ -136,13 +198,22 @@ module Rf.UIParts {
     }
 
     /**
-      * イメージ無しスプライトUI
-    **/
+     * イメージ無しスプライトUI
+     * @classdesc イメージ無しスプライトUIクラス
+     * @constructor
+     * @memberof UIParts
+     * @extends UIParts.UIPartBase
+     */
     export class NoImageSprite extends Rf.UIParts.UIPartBase {
 
-    /**
-     * イメージ無しスプライトUI
-    */
+        /**
+         * コンストラクタ
+         * @method
+         * @name UIParts.NoImageSprite#NoImageSprite
+         * @param {number} width - 表示サイズ.幅
+         * @param {number} height - 表示サイズ.高さ
+         * @param {Object} stage - 親Node(enchantjsインスタンス)
+         */
         public constructor(width: number, height: number, stage: any) {
             super();
 
@@ -150,6 +221,12 @@ module Rf.UIParts {
             this.Ui = rfView.ui;
         }
 
+        /**
+         * 塗りつぶし情報の設定
+         * @method
+         * @name UIParts.NoImageSprite#SetSurface
+         * @param {string} fillStyle - 塗りつぶし情報
+         */
         public SetSurface(fillStyle: string): void {
             var rfView = RfView.Create("new Surface(" + this.Ui.width + "," + this.Ui.height + ")", null);
             rfView.ui.context.beginPath();
@@ -162,10 +239,22 @@ module Rf.UIParts {
 
     /**
      * マップUI
-    */
+     * @classdesc マップUIクラス
+     * @constructor
+     * @memberof UIParts
+     * @extends UIParts.UIPartBase
+     */
     export class Map extends Rf.UIParts.UIPartBase {
         public FileName: string;
 
+        /**
+         * コンストラクタ
+         * @method
+         * @name UIParts.Map#Map
+         * @param {number} tipWidth - マップチップサイズ.幅
+         * @param {number} tipHeight - マップチップサイズ.高さ
+         * @param {Object} stage - 親Node(enchantjsインスタンス)
+         */
         public constructor(tipWidth: number, tipHeight: number,stage: any) {
             super();
 
@@ -175,14 +264,32 @@ module Rf.UIParts {
             this.Ui = rfView.ui;
         }
 
+        /**
+         * 更新イベントハンドラ
+         * @method
+         * @name UIParts.Map#OnRefresh
+         */
         protected OnRefresh(): void {
             this.Ui.image = UIPartBase.assets[this.FileName];
         }
 
+        /**
+         * マップ情報の読み込み
+         * @method
+         * @name UIParts.Map#LoadData
+         * @param {Array} mapData - マップ情報（２次元配列）
+         */
         public LoadData(mapData: any): void {
             this.Ui.loadData(mapData);
         }
 
+        /**
+         * 複数のマップ情報の読み込み
+         * @method
+         * @name UIParts.Map#LoadDatas
+         * @param {Array} mapData0 - 前景マップ情報（２次元配列）
+         * @param {Array} mapData1 - 背景マップ情報（２次元配列）
+         */
         public LoadDatas(mapData0: any, mapData1: any): void {
             this.Ui.loadData(mapData0, mapData1);
         }

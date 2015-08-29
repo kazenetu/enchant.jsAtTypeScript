@@ -2,10 +2,20 @@ var Rf;
 (function (Rf) {
     var Base;
     (function (Base) {
-        /*
+        /**
          * リソース情報
-        */
+         * @classdesc リソース情報クラス
+         * @constructor
+         * @memberof Base
+         */
         var Resource = (function () {
+            /**
+             * コンストラクタ
+             * @method
+             * @name Base.Resource#Resource
+             * @param {string} keyword - リソースのキー
+             * @param {string} fileName - リソース名
+             */
             function Resource(keyword, fileName) {
                 this.Keyword = keyword;
                 this.FileName = fileName;
@@ -13,17 +23,38 @@ var Rf;
             return Resource;
         })();
         Base.Resource = Resource;
-        /*
-         * リソース管理クラス
-        */
+        /**
+         * リソース管理
+         * @classdesc リソース管理クラス
+         * @constructor
+         * @memberof Base
+         */
         var ResourceManager = (function () {
+            /**
+             * コンストラクタ
+             * @method
+             * @name Base.ResourceManager#ResourceManager
+             */
             function ResourceManager() {
                 this.ResourcePath = "";
                 this.resources = new Array();
             }
+            /**
+            * リソース名を追加
+            * @method
+            * @name Base.ResourceManager#AddGetResourceName
+            * @param {string} keyword - リソースのキー
+            * @param {string} fileName - リソース名
+             */
             ResourceManager.prototype.AddGetResourceName = function (keyword, fileName) {
                 this.resources.push(new Resource(keyword, this.ResourcePath + fileName));
             };
+            /**
+            * リソースの配列を取得
+            * @method
+            * @name Base.ResourceManager#GetResourceNames
+            * @return {string} リソースの配列を返す
+             */
             ResourceManager.prototype.GetResourceNames = function () {
                 var result = new Array();
                 this.resources.forEach(function (value, index) {
@@ -31,6 +62,13 @@ var Rf;
                 });
                 return result;
             };
+            /**
+             * リソース名を取得
+             * @method
+             * @name Base.ResourceManager#GetResourceName
+             * @param {string} keyword - リソースのキー
+             * @return {string} リソース名を返す
+             */
             ResourceManager.prototype.GetResourceName = function (keyword) {
                 var result = "";
                 this.resources.filter(function (value) {
@@ -57,14 +95,26 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+/**
+ * UIパーツ
+ * @namespace UIParts
+ */
 var Rf;
 (function (Rf) {
     var UIParts;
     (function (UIParts) {
         /**
          * enchantjs用UIパーツのスーパークラス
-        */
+         * @classdesc enchantjs用UIパーツのスーパークラス
+         * @constructor
+         * @memberof UIParts
+         */
         var UIPartBase = (function () {
+            /**
+             * コンストラクタ
+             * @method
+             * @name UIParts.UIPartBase#UIPartBase
+             */
             function UIPartBase() {
                 this.X = 0;
                 this.Y = 0;
@@ -80,7 +130,9 @@ var Rf;
             }
             /**
              * プロパティをjsオブジェクトに反映
-            */
+             * @method
+             * @name UIParts.UIPartBase#Refresh
+             */
             UIPartBase.prototype.Refresh = function () {
                 if (this.Ui !== null) {
                     this.Ui.x = this.X;
@@ -96,6 +148,11 @@ var Rf;
                     this.OnRefresh();
                 }
             };
+            /**
+             * 更新イベントハンドラ
+             * @method
+             * @name UIParts.UIPartBase#OnRefresh
+             */
             UIPartBase.prototype.OnRefresh = function () {
             };
             return UIPartBase;
@@ -103,9 +160,19 @@ var Rf;
         UIParts.UIPartBase = UIPartBase;
         /**
          * グループUI
-        */
+         * @classdesc グループUIクラス
+         * @constructor
+         * @memberof UIParts
+         * @extends UIParts.UIPartBase
+         */
         var Group = (function (_super) {
             __extends(Group, _super);
+            /**
+             * コンストラクタ
+             * @method
+             * @name UIParts.Group#Group
+             * @param {Object} stage - 親Node(enchantjsインスタンス)
+             */
             function Group(stage) {
                 _super.call(this);
                 var rfView = RfView.Create("new Group()", stage);
@@ -116,9 +183,19 @@ var Rf;
         UIParts.Group = Group;
         /**
          * ラベルUI
-        */
+         * @classdesc ラベルUIクラス
+         * @constructor
+         * @memberof UIParts
+         * @extends UIParts.UIPartBase
+         */
         var Label = (function (_super) {
             __extends(Label, _super);
+            /**
+             * コンストラクタ
+             * @method
+             * @name UIParts.Label#Label
+             * @param {Object} stage - 親Node(enchantjsインスタンス)
+             */
             function Label(stage) {
                 _super.call(this);
                 this.Width = 0;
@@ -129,6 +206,11 @@ var Rf;
                 var rfView = RfView.Create("new Label()", stage);
                 this.Ui = rfView.ui;
             }
+            /**
+             * 更新イベントハンドラ
+             * @method
+             * @name UIParts.Label#OnRefresh
+             */
             Label.prototype.OnRefresh = function () {
                 this.Ui.text = this.Text;
                 if (this.Width > 0.0) {
@@ -149,9 +231,21 @@ var Rf;
         UIParts.Label = Label;
         /**
          * スプライトUI
-        */
+         * @classdesc スプライトUIクラス
+         * @constructor
+         * @memberof UIParts
+         * @extends UIParts.UIPartBase
+         */
         var Sprite = (function (_super) {
             __extends(Sprite, _super);
+            /**
+             * コンストラクタ
+             * @method
+             * @name UIParts.Sprite#Sprite
+             * @param {number} width - 表示サイズ.幅
+             * @param {number} height - 表示サイズ.高さ
+             * @param {Object} stage - 親Node(enchantjsインスタンス)
+             */
             function Sprite(width, height, stage) {
                 _super.call(this);
                 this.FileName = "";
@@ -159,6 +253,11 @@ var Rf;
                 var rfView = RfView.Create("new Sprite(" + width + "," + height + ")", stage);
                 this.Ui = rfView.ui;
             }
+            /**
+             * 更新イベントハンドラ
+             * @method
+             * @name UIParts.Sprite#OnRefresh
+             */
             Sprite.prototype.OnRefresh = function () {
                 if (this.FileName !== "") {
                     this.Ui.image = UIPartBase.assets[this.FileName];
@@ -169,18 +268,33 @@ var Rf;
         })(Rf.UIParts.UIPartBase);
         UIParts.Sprite = Sprite;
         /**
-          * イメージ無しスプライトUI
-        **/
+         * イメージ無しスプライトUI
+         * @classdesc イメージ無しスプライトUIクラス
+         * @constructor
+         * @memberof UIParts
+         * @extends UIParts.UIPartBase
+         */
         var NoImageSprite = (function (_super) {
             __extends(NoImageSprite, _super);
             /**
-             * イメージ無しスプライトUI
-            */
+             * コンストラクタ
+             * @method
+             * @name UIParts.NoImageSprite#NoImageSprite
+             * @param {number} width - 表示サイズ.幅
+             * @param {number} height - 表示サイズ.高さ
+             * @param {Object} stage - 親Node(enchantjsインスタンス)
+             */
             function NoImageSprite(width, height, stage) {
                 _super.call(this);
                 var rfView = RfView.Create("new Sprite(" + width + "," + height + ")", stage);
                 this.Ui = rfView.ui;
             }
+            /**
+             * 塗りつぶし情報の設定
+             * @method
+             * @name UIParts.NoImageSprite#SetSurface
+             * @param {string} fillStyle - 塗りつぶし情報
+             */
             NoImageSprite.prototype.SetSurface = function (fillStyle) {
                 var rfView = RfView.Create("new Surface(" + this.Ui.width + "," + this.Ui.height + ")", null);
                 rfView.ui.context.beginPath();
@@ -194,21 +308,51 @@ var Rf;
         UIParts.NoImageSprite = NoImageSprite;
         /**
          * マップUI
-        */
+         * @classdesc マップUIクラス
+         * @constructor
+         * @memberof UIParts
+         * @extends UIParts.UIPartBase
+         */
         var Map = (function (_super) {
             __extends(Map, _super);
+            /**
+             * コンストラクタ
+             * @method
+             * @name UIParts.Map#Map
+             * @param {number} tipWidth - マップチップサイズ.幅
+             * @param {number} tipHeight - マップチップサイズ.高さ
+             * @param {Object} stage - 親Node(enchantjsインスタンス)
+             */
             function Map(tipWidth, tipHeight, stage) {
                 _super.call(this);
                 this.FileName = "";
                 var rfView = RfView.Create("new Map(" + tipWidth + "," + tipHeight + ")", stage);
                 this.Ui = rfView.ui;
             }
+            /**
+             * 更新イベントハンドラ
+             * @method
+             * @name UIParts.Map#OnRefresh
+             */
             Map.prototype.OnRefresh = function () {
                 this.Ui.image = UIPartBase.assets[this.FileName];
             };
+            /**
+             * マップ情報の読み込み
+             * @method
+             * @name UIParts.Map#LoadData
+             * @param {Array} mapData - マップ情報（２次元配列）
+             */
             Map.prototype.LoadData = function (mapData) {
                 this.Ui.loadData(mapData);
             };
+            /**
+             * 複数のマップ情報の読み込み
+             * @method
+             * @name UIParts.Map#LoadDatas
+             * @param {Array} mapData0 - 前景マップ情報（２次元配列）
+             * @param {Array} mapData1 - 背景マップ情報（２次元配列）
+             */
             Map.prototype.LoadDatas = function (mapData0, mapData1) {
                 this.Ui.loadData(mapData0, mapData1);
             };
@@ -231,12 +375,21 @@ var Rf;
     (function (UIParts) {
         /**
          * キャラクタ
-        */
+         * @classdesc キャラクタクラス
+         * @constructor
+         * @memberof UIParts
+         * @extends UIParts.Sprite
+         */
         var Character = (function (_super) {
             __extends(Character, _super);
             /**
-             * キャラクタ
-            */
+             * コンストラクタ
+             * @method
+             * @name UIParts.Character#Character
+             * @param {number} width - 表示サイズ.幅
+             * @param {number} height - 表示サイズ.高さ
+             * @param {Object} stage - 親Node(enchantjsインスタンス)
+             */
             function Character(width, height, stage) {
                 _super.call(this, width, height, stage);
                 this.charaIndex = 0;
@@ -249,8 +402,10 @@ var Rf;
                 });
             }
             /**
-             * プロパティをjsオブジェクトに反映
-            */
+             * 更新イベントハンドラ
+             * @method
+             * @name UIParts.Character#OnRefresh
+             */
             Character.prototype.OnRefresh = function () {
                 _super.prototype.OnRefresh.call(this);
                 //フレーム処理
@@ -261,14 +416,19 @@ var Rf;
             };
             /**
              * 実行処理実行
-            */
+             * @method
+             * @name UIParts.Character#Run
+             * @return {boolean} 処理結果を返す
+             */
             Character.prototype.Run = function () {
                 this.SetAnime();
                 return true;
             };
             /**
-             * アニメ処理
-            */
+             * アニメ実行
+             * @method
+             * @name UIParts.Character#SetAnime
+             */
             Character.prototype.SetAnime = function () {
                 if (++this.anime >= 4) {
                     this.anime = 0;
@@ -282,26 +442,64 @@ var Rf;
 
 /// <reference path="./ResourceManager.ts"/>
 /// <reference path="../UIParts/Character.ts"/>
+/**
+ * ベース
+ * @namespace Base
+ */
 var Rf;
 (function (Rf) {
     var Base;
     (function (Base) {
-        /*
+        /**
          * ゲームメイン処理
-        */
+         * @classdesc ゲームメインクラス
+         * @constructor
+         * @memberof Base
+         */
         var GameMain = (function () {
+            /**
+             * コンストラクタ
+             * @method
+             * @name Base.GameMain#GameMain
+             */
             function GameMain() {
                 this.resourceManager = new Base.ResourceManager();
             }
+            /**
+             * リソースのルートパスを設定
+             * @method
+             * @name Base.GameMain#SetResourcePath
+             * @param {string} path - ルートパス
+             */
             GameMain.prototype.SetResourcePath = function (path) {
                 this.resourceManager.ResourcePath = path;
             };
+            /**
+             * リソース名を追加
+             * @method
+             * @name Base.GameMain#AddGetResourceName
+             * @param {string} keyword - リソースのキー
+             * @param {string} fileName - リソース名
+             */
             GameMain.prototype.AddGetResourceName = function (keyword, fileName) {
                 this.resourceManager.AddGetResourceName(keyword, fileName);
             };
+            /**
+             * リソースの配列を取得
+             * @method
+             * @name Base.GameMain#GetResourceNames
+             * @return {string} リソースの配列を返す
+             */
             GameMain.prototype.GetResourceNames = function () {
                 return this.resourceManager.GetResourceNames();
             };
+            /**
+             * リソース名を取得
+             * @method
+             * @name Base.GameMain#GetResourceName
+             * @param {string} keyword - リソースのキー
+             * @return {string} リソース名を返す
+             */
             GameMain.prototype.GetResourceName = function (keyword) {
                 return this.resourceManager.GetResourceName(keyword);
             };
