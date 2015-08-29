@@ -1,7 +1,7 @@
 # enchant.jsAtTypeScript
 TypeScriptでenchant.jsを簡易的に使えるようにするライブラリ  
-[実装サンプルのデモ](http://kazenetu.github.io/enchant.jsAtTypeScript/)
-[ライブラリのAPIドキュメント](http://kazenetu.github.io/enchant.jsAtTypeScript/doc/)
+- [実装サンプルのデモ](http://kazenetu.github.io/enchant.jsAtTypeScript/)
+- [ライブラリのAPIドキュメント](http://kazenetu.github.io/enchant.jsAtTypeScript/doc/)
 
 ## ビルド方法
   * VisualStudio2013以降でビルドする場合  
