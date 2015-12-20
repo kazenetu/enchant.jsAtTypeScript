@@ -1,4 +1,5 @@
 ﻿/// <reference path="./UIParts.ts"/>
+/// <reference path="../Interfaces/IRunnable.ts"/>
 
 module Rf.UIParts {
     /**
