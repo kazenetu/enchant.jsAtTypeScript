@@ -1,6 +1,6 @@
 /// <reference path="../../definitelytyped/base.d.ts" />
 /// <reference path="../../definitelytyped/enchantjs.d.ts" />
-﻿
+
 module Rf {
     /**
      * タップ時に表示する演出用クラス

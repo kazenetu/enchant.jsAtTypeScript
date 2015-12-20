@@ -14,4 +14,7 @@
 		"merge2": "*",
 		"gulp-jsdoc": "*"
 	}
+  ,"scripts": {
+      "build": "gulp default"
+  }
 }

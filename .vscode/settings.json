@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	"telemetry.enableCrashReporter": false,
+	"editor.renderWhitespace": true,
+	"editor.insertSpaces": true,
+	"editor.wrappingColumn": 0
+     , "javascript.validate.enable": false
+}
