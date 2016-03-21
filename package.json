@@ -12,6 +12,6 @@
 		"gulp-concat": "*",
 		"run-sequence": "*",
 		"merge2": "*",
-		"gulp-jsdoc": "*"
+		"gulp-jsdoc3": "*"
 	}
 }

@@ -86,39 +86,37 @@ gulp.task('default',['buildBases'],function(){
 });
 
 //ドキュメント作成
-var jsdoc = require("gulp-jsdoc");
+var jsdoc = require("gulp-jsdoc3");
 
-// プロジェクト情報
-var infos = {
-	// バージョン
-	version: "1.0.0"
-};
-
-// HTMLのテンプレート設定
-var template = {
-	// テンプレートプラグイン「ink-docstrap」を使用する
-	path: "ink-docstrap",
-
-	// プロジェクト名 ページタイトル・ヘッダーの左上に表示されます
-  systemName: "enchant.jsAtTypeScript",
-
-  // HTMLのスタイルテーマ
-  // cerulean, cosmo, cyborg, darkly, flatly, journal, lumen, paper, readable, sandstone, simplex, slate, spacelab, superhero, united, yetiの中から選べます
-  theme: "cosmo",
-
-  // ソースコードに行番号を表示するかどうか
-  linenums: true
-};
-
-// オプション
-var options = {
-  // ソースコードを記述したHTMLを生成するかどうか
-  outputSourceFiles: true
+jsconfig = {
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "destination": "./doc"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": true
+    },
+    "path": "ink-docstrap",
+    "theme": "cerulean",
+    "navType": "vertical",
+    "linenums": true,
+    "dateFormat": "MMMM Do YYYY, h:mm:ss a"
+  }
 };
 
 // jsdocを書き出すタスク
-gulp.task("jsdoc", function() {
-  gulp.src(["src/base.js"])
-		.pipe(jsdoc.parser(infos))
-		.pipe(jsdoc.generator("./doc/", template, options));
+gulp.task("jsdoc", function(cb) {
+    gulp.src(["src/base.js"], {read: false})
+        .pipe(jsdoc(jsconfig,cb));
 });
