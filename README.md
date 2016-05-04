@@ -1,3 +1,5 @@
+[DEPRECATED][enchantjs-typescript](https://github.com/kazenetu/enchantjs-typescript)を利用してください。
+
 # enchant.jsAtTypeScript
 TypeScriptでenchant.jsを簡易的に使えるようにするライブラリ  
 - [実装サンプルのデモ](http://kazenetu.github.io/enchant.jsAtTypeScript/)
